@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit,ChangeDetectorRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddComponent } from './dialog-add/dialog-add.component';
 import { DialogEditComponent } from './dialog-edit/dialog-edit.component';
 import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component';
+import { HttpClient } from '@angular/common/http';
 
 export interface bookData {
   name: string ;
@@ -13,16 +14,16 @@ export interface bookData {
   action: any ;
 }
 
-const ELEMENT_DATA: bookData[] = [
-  { name: 'Hydrogen', start: 's', end: 'H', writer: 'writer', cover: 'url', action: '' },
-  { name: 'Hydrogen', start: 's', end: 'H', writer: 'writer', cover: 'url', action: '' },
-  { name: 'Hydrogen', start: 's', end: 'H', writer: 'writer', cover: 'url', action: '' },
-  { name: 'Hydrogen', start: 's', end: 'H', writer: 'writer', cover: 'url', action: '' },
-  { name: 'Hydrogen', start: 's', end: 'H', writer: 'writer', cover: 'url', action: '' },
-  { name: 'Hydrogen', start: 's', end: 'H', writer: 'writer', cover: 'url', action: '' },
-  { name: 'Hydrogen', start: 's', end: 'H', writer: 'writer', cover: 'url', action: '' },
-  { name: 'Hydrogen', start: 's', end: 'H', writer: 'writer', cover: 'url', action: '' },
-]
+// const ELEMENT_DATA: bookData[] = [
+//   { name: 'Hydrogen', start: 's', end: 'H', writer: 'writer', cover: 'url', action: '' },
+//   { name: 'Hydrogen', start: 's', end: 'H', writer: 'writer', cover: 'url', action: '' },
+//   { name: 'Hydrogen', start: 's', end: 'H', writer: 'writer', cover: 'url', action: '' },
+//   { name: 'Hydrogen', start: 's', end: 'H', writer: 'writer', cover: 'url', action: '' },
+//   { name: 'Hydrogen', start: 's', end: 'H', writer: 'writer', cover: 'url', action: '' },
+//   { name: 'Hydrogen', start: 's', end: 'H', writer: 'writer', cover: 'url', action: '' },
+//   { name: 'Hydrogen', start: 's', end: 'H', writer: 'writer', cover: 'url', action: '' },
+//   { name: 'Hydrogen', start: 's', end: 'H', writer: 'writer', cover: 'url', action: '' },
+// ]
 
 
 @Component({
@@ -33,17 +34,30 @@ const ELEMENT_DATA: bookData[] = [
 export class AppComponent {
 
   constructor(
+    private http: HttpClient,
     private dialogRef: MatDialog,
+    private changeDetectorRefs: ChangeDetectorRef,
   ) {}
 
-  displayedColumns: string[] = ['name', 'start', 'end', 'writer', 'cover', 'action'] ;
-  dataSource = ELEMENT_DATA ;
+  ngOnInit(): void {
+    this.bookData() ;
+  }
+
+  displayedColumns: string[] = ['id','name', 'start', 'end', 'writer', 'cover', 'action'] ;
+  dataSource:bookData[] = [] ;
+
+  bookData() {
+    this.http.post<any>('http://localhost:8000/api/book',{}).subscribe(res => {
+        console.log(res.data) ;
+        this.dataSource = res.data ;
+        this.changeDetectorRefs.detectChanges(); 
+    })
+  }
 
   openAddDialog() {
     const dialogRef = this.dialogRef.open(DialogAddComponent, {
       width: '350px',
       height: '475px',
-      
     })
     dialogRef.afterClosed().subscribe(result => {
 
