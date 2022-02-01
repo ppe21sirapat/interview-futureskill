@@ -1,0 +1,49 @@
+<mat-card>
+  <mat-card-header>
+      <button mat-raised-button color="primary" style="width:100px" (click)=openAddDialog()>Add +</button>
+    <mat-card-title></mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef style="width:20%"> Name </th>
+        <td mat-cell *matCellDef="let data"> {{data.name}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="start">
+        <th mat-header-cell *matHeaderCellDef> Start </th>
+        <td mat-cell *matCellDef="let data"> {{data.start}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="end">
+        <th mat-header-cell *matHeaderCellDef> End </th>
+        <td mat-cell *matCellDef="let data"> {{data.end}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="writer">
+        <th mat-header-cell *matHeaderCellDef> Writer </th>
+        <td mat-cell *matCellDef="let data"> {{data.writer}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cover">
+        <th mat-header-cell *matHeaderCellDef> Cover </th>
+        <td mat-cell *matCellDef="let data"> {{data.cover}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef style="width:20%"> </th>
+        <td mat-cell *matCellDef="let data"> 
+          <button mat-stroked-button (click)="openEditDialog()"><mat-icon style="font-size: 20px; color:gray;">edit</mat-icon></button>
+          <button mat-stroked-button (click)="openDeleteDialog()"><mat-icon style="font-size: 20px; color:#ff5476;">delete</mat-icon></button>
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-card-content>
+</mat-card>
+
+<router-outlet></router-outlet>
+

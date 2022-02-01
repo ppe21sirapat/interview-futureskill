@@ -1,0 +1,28 @@
+.dialog-content {
+    width: 80% ;
+    height: auto ;
+    margin: 0 auto ;
+    text-align: center ;
+}
+
+.dialog-action {
+    display: grid ;
+    grid-template-columns: repeat(2, 1fr) ;
+    width: 80% ;
+    height: 50px ;
+    margin: 25px auto 0px auto ;
+ }
+
+ .icon-warning {
+    font-size: 100px !important ;
+    color: #F64E60 ;
+    margin: 30px auto 30px auto ;
+    width: auto ;
+    height: auto ;
+}
+
+button {
+    width: 150px ;
+    height: 35px ;
+    margin: 0 auto ;
+}
