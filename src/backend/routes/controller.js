@@ -2,7 +2,6 @@ let express = require('express') ;
 let router = express.Router() ;
 let dbCon = require('../dbCon') ;
 
-
 // Check API
 router.get('/', (req, res) => {
     res.send({message: "API Working . . ."}) ;
@@ -37,13 +36,14 @@ router.post('/bookById',(req,res) => {
             {
                 console.log(error) ;
             }
+     
             res.send({ data: result }) ;
         })
     }
 })
 
 // Add book
-router.post('/add', (req,res) => {
+router.post('/add', (req,res) => {  
     let name = req.body.name ;
     let start_date = req.body.start_date ;
     let end_date = req.body.end_date ;

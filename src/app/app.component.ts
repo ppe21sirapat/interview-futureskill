@@ -48,7 +48,6 @@ export class AppComponent {
 
   bookData() {
     this.http.post<any>('http://localhost:8000/api/book',{}).subscribe(res => {
-        console.log(res.data) ;
         this.dataSource = res.data ;
         this.changeDetectorRefs.detectChanges(); 
     })
@@ -60,28 +59,33 @@ export class AppComponent {
       height: '475px',
     })
     dialogRef.afterClosed().subscribe(result => {
-
+        this.bookData() ;
     })
   }
-  openEditDialog() {
+
+  openEditDialog(id:number) {
     const dialogRef = this.dialogRef.open(DialogEditComponent, {
       width: '350px',
       height: '475px',
-      
+      data : {
+        id: id 
+      }
     })
     dialogRef.afterClosed().subscribe(result => {
-
+        this.bookData() ;
     })
   }
 
-  openDeleteDialog() {
+  openDeleteDialog(id:number) {
     const dialogRef = this.dialogRef.open(DialogDeleteComponent, {
       width: '450px',
       height: '340px',
-      
+      data : {
+        id: id
+      }
     })
     dialogRef.afterClosed().subscribe(result => {
-
+        this.bookData() ;
     })
   }
 }

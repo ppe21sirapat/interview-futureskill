@@ -12,14 +12,14 @@ export class DialogDeleteComponent implements OnInit {
   constructor(
     private http:HttpClient,
     private dialogRef: MatDialogRef<DialogDeleteComponent>,
-    @Inject(MAT_DIALOG_DATA) public deleteData: any ,
+    @Inject(MAT_DIALOG_DATA) public deleteId: any ,
   ) { }
 
   ngOnInit(): void {
   }
 
   delete() {
-    let id = this.deleteData.id ;
+    let id = this.deleteId.id ;
 
     this.http.post<any>('http://localhost:8000/api/delete',{id: id}).subscribe(res => {
       this.dialogRef.close()

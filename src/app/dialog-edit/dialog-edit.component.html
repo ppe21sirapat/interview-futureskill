@@ -1,23 +1,23 @@
 <div class="dialog-layout">
     <mat-form-field appearance="outline">
         <mat-label>Name</mat-label>
-        <input matInput placeholder="Name">
+        <input matInput [formControl]="formName" placeholder="Name">
     </mat-form-field>
     <mat-form-field appearance="outline">
         <mat-label>Start</mat-label>
-        <input type="date" matInput placeholder="Start">
+        <input matInput type="date" [formControl]="formStartDate" placeholder="Start">
     </mat-form-field>
     <mat-form-field appearance="outline">
         <mat-label>End</mat-label>
-        <input type="date" matInput placeholder="End">
+        <input matInput type="date" [formControl]="formEndDate" placeholder="End">
     </mat-form-field>
     <mat-form-field appearance="outline">
         <mat-label>Writer</mat-label>
-        <input matInput placeholder="Writer">
+        <input matInput [formControl]="formWriter" placeholder="Writer">
     </mat-form-field>
     <mat-form-field appearance="outline">
         <mat-label>Cover</mat-label>
-        <input matInput placeholder="Cover">
+        <input matInput [formControl]="formCover" placeholder="Cover">
     </mat-form-field>
-    <button mat-stroked-button color="primary" class="btn-save">Save</button>
+    <button mat-stroked-button color="primary" class="btn-save" (click)="update()">Update</button>
 </div>
