@@ -21,4 +21,4 @@ app.listen(port) ;
 
 module.exports = app ;
 
-console.log(`Qadmin Running On Port ${port} . . .`) ;
+console.log(`API Running On Port ${port} . . .`) ;

@@ -1,0 +1,35 @@
+version: '3.4'
+
+services:
+  backend:
+    image: backend
+    build:
+      context: src/backend
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 8000:8000
+  mysql:
+    image: dbfutureskill
+    environment:
+      # - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=futureskill
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      # - MYSQL_USER=admin
+      # - MYSQL_PASSWORD=password
+    ports:
+      - 3306:3306
+  # phpmyadmin:
+  #   image: phpmyadmin
+  #   depends_on:
+  #     - mysql
+  #   ports:
+  #     - 8080:80
+  #   # environment:
+  #     # - PMA_HOST=mysql
+  #     # - PMA_USER=admin
+  #     # - PMA_PASSWORD=password
+  #     # - PMA_PORT=3306
+  #   restart: always
+    
