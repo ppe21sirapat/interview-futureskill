@@ -1,5 +1,7 @@
 ## Angular Version
 This project was generated with [Angular CLI] version 13.1.4
+
+## Install Angular Cli
 npm install -g @angular/cli
 
 ## Run Angular
@@ -12,4 +14,5 @@ build Dockerfile
 ## Database
 ./db (futureskill.sql)
 build Dockerfile
+
 
