@@ -1,9 +1,8 @@
 ## Angular Version
-
 This project was generated with [Angular CLI] version 13.1.4
+npm install -g @angular/cli
 
-## Development server
-
+## Run Angular
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
 
 ## API
